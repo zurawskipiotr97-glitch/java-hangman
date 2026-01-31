@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 public class UserInput {
 
-    private Scanner scanner = new Scanner(System.in);
-
-    public char userInput() {
+    public static char userInput() {
+        Scanner scanner = new Scanner(System.in);
         String input;
         char character;
 

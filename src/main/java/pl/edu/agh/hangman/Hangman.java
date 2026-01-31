@@ -57,19 +57,27 @@ public class Hangman {
     };
 
     public static void main(String[] args) throws IOException {
-        Word word = new Word("src/main/resources/slowa.txt");
-        CheckLetters gra = new CheckLetters(word.losujSlowo());
-        UserInput input = new UserInput();
 
-        do {
-            gra.containsLetter(input.userInput());
-            gra.getShowingWord();
-            gra.getGameStatus();
-            System.out.println(gra.getShowingWord());
-            System.out.println(gra.getGameStatus());
-        } while (gra.getGameStatus() != 7);
 
-//        PrintBoard actual = new PrintBoard()
+
+
+//        CheckLetters nowaGra = new CheckLetters(path, dlugoscSlowa);
+//        System.out.println(Word.losujSlowo(path, sourceTypeCase, dlugoscSlowa));
+
+
+//        Word word = new Word(path);
+//        CheckLetters gra = new CheckLetters(word.losujSlowo());
+//        UserInput input = new UserInput();
+//
+//        do {
+//            gra.containsLetter(input.userInput());
+//            gra.getShowingWord();
+//            gra.getGameStatus();
+//            System.out.println(gra.getShowingWord());
+//            System.out.println(gra.getGameStatus());
+//        } while (gra.getGameStatus() != 7);
+//
+////        PrintBoard actual = new PrintBoard();
 
     }
 }
