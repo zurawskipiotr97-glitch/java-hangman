@@ -8,11 +8,12 @@ public class CheckLetters {
 
     private final String word;
     private char[] showingWord;
-    private int gameStatus = 1;
+    private int gameStatus;
 
-    public CheckLetters(String path, int sourceTypeCase, int dlugoscSlowa) throws IOException {
+    public CheckLetters() throws IOException, InterruptedException {
         this.word = losujPathCase.losujSlowo();
         this.showingWord = new char[word.length()];
+        this.gameStatus = 0;
     }
 
     public void containsLetter(char letter) {
@@ -45,5 +46,9 @@ public class CheckLetters {
 
     public int getGameStatus() {
         return gameStatus;
+    }
+
+    public String getWord(){
+        return word;
     }
 }

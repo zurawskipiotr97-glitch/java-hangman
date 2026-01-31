@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class UserInput {
 
-    public static char userInput() {
+    public static char letterInput() {
         Scanner scanner = new Scanner(System.in);
         String input;
         char character;
 
         while (true) {
-            System.out.print("Enter letter: ");
+            System.out.print("guess> ");
             input = scanner.nextLine().trim().toUpperCase();
 
             if (input.length() == 1 && Character.isLetter(input.charAt(0))) {

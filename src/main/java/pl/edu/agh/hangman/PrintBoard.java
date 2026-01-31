@@ -1,26 +1,27 @@
 package pl.edu.agh.hangman;
 
+import java.sql.SQLOutput;
+
 public class PrintBoard {
-    int stanGry;
-    char[]  openWord;
+    Config k = Config.getInstance();
     String[] tablica;
+    int stanGry;
     char[] showWord;
     int wynik;
 
-    public PrintBoard(String[] tablica, char[]  openWord) {
-        this.stanGry = 1;
-        this.tablica = tablica;
-        this.openWord = openWord;
-        this.showWord = new char[openWord.length];
-        this.wynik = wynik;
-
+    public PrintBoard(CheckLetters gra) {
+        this.stanGry = gra.getGameStatus();
+        this.tablica = k.getTable();;
+        this.showWord = new char[gra.getShowingWord().length];
     }
 
     public void printBoard(CheckLetters gra) {
         if (tablica.length != gra.getGameStatus()) {
+            System.out.println();
             System.out.println(tablica[gra.getGameStatus()]);
             showWord = changeWord(gra.getShowingWord());
             System.out.println(showWord);
+            System.out.println(gra.getWord());
         } else {
             switch(wynik) {
                 case 0 -> {
@@ -36,13 +37,6 @@ public class PrintBoard {
                 }
             }
         }
-
-
-
-
-
-
-
     }
 
     public char [] changeWord(char[] showingWord) {

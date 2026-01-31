@@ -56,10 +56,8 @@ public class Hangman {
                     "========"
     };
 
-    public static void main(String[] args) throws IOException {
-
-
-
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Api.run();
 
 //        CheckLetters nowaGra = new CheckLetters(path, dlugoscSlowa);
 //        System.out.println(Word.losujSlowo(path, sourceTypeCase, dlugoscSlowa));
