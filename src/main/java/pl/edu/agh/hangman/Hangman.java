@@ -60,15 +60,13 @@ public class Hangman {
         Word word = new Word("src/main/resources/slowa.txt");
         CheckLetters gra = new CheckLetters(word.losujSlowo());
         UserInput input = new UserInput();
+        PrintBoard board = new PrintBoard(HANGMANPICS, gra.getShowingWord());
 
         do {
-
             gra.containsLetter(input.userInput());
-            PrintBoard board = new PrintBoard(HANGMANPICS, gra.getShowingWord());
-            board.printBoard();
-            System.out.println(gra.getShowingWord());
-            System.out.println(gra.getGameStatus());
-        } while (gra.getGameStatus() != 7);
+            board.printBoard(gra);
+
+        } while (gra.getGameStatus() != HANGMANPICS.length);
 
 //        PrintBoard actual = new PrintBoard()
 

@@ -11,7 +11,13 @@ public class CheckLetters {
     }
 
     public void containsLetter(char letter) {
+
+
+// log
         System.out.println(word);
+
+
+
         if (Character.isAlphabetic(letter) && word.contains(String.valueOf(letter))) {
             try {
                 String upperCaseWord = word.toUpperCase();
