@@ -37,12 +37,6 @@ public class PrintBoard {
             }
         }
 
-
-
-
-
-
-
     }
 
     public char [] changeWord(char[] showingWord) {
