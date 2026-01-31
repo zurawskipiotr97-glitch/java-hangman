@@ -60,6 +60,7 @@ public class Hangman {
         Word word = new Word("src/main/resources/slowa.txt");
         CheckLetters gra = new CheckLetters(word.losujSlowo());
         UserInput input = new UserInput();
+        
         do {
             gra.containsLetter(input.userInput());
             gra.getShowingWord();
