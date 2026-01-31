@@ -18,8 +18,5 @@ public class CheckLettersTest {
         koń.containsLetter('2');
         assertEquals(2, koń.getGameStatus());
 
-
-        System.out.println(koń.getShowingWord());
-
     }
 }

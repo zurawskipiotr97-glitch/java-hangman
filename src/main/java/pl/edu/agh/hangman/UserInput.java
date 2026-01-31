@@ -17,7 +17,6 @@ public class UserInput {
 
             if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
                 character = input.charAt(0);
-                character = Character.toUpperCase(character);
                 return character;
             }
             System.out.println("Invalid input. Please try again.");
