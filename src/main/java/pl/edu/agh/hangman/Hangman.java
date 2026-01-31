@@ -62,9 +62,10 @@ public class Hangman {
         UserInput input = new UserInput();
 
         do {
+
             gra.containsLetter(input.userInput());
-            gra.getShowingWord();
-            gra.getGameStatus();
+            PrintBoard board = new PrintBoard(HANGMANPICS, gra.getShowingWord());
+            board.printBoard();
             System.out.println(gra.getShowingWord());
             System.out.println(gra.getGameStatus());
         } while (gra.getGameStatus() != 7);
