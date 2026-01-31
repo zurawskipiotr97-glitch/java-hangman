@@ -10,15 +10,28 @@ public class CheckLetters {
         this.showingWord = new char[word.length()];
     }
 
-    private void ContainsLetter(String word, char letter) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == letter) {
-                showingWord[i] = letter;
+    public void ContainsLetter(String word, char letter) {
+        if (Character.isAlphabetic(letter) && word.contains(String.valueOf(letter))) {
+            try {
+                String upperCaseWord = word.toUpperCase();
+                char upperCaseLetter = Character.toUpperCase(letter);
+                boolean found = false;
+
+                for (int i = 0; i < word.length(); i++) {
+                    if (upperCaseWord.charAt(i) == upperCaseLetter) {
+                        showingWord[i] = upperCaseLetter;
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    gameStatus++;
+                }
+            } catch (Exception e) {
+                gameStatus++;
             }
+        } else {
+            gameStatus++;
         }
-
-
-
     }
 
     public char[] getShowingWord() {
