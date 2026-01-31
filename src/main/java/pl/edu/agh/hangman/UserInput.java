@@ -7,15 +7,18 @@ public class UserInput {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public String userInput() {
+    public char userInput() {
         String input;
+        char character;
 
         while (true) {
             System.out.print("Enter letter: ");
             input = scanner.nextLine().trim().toUpperCase();
 
             if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
-                return input;
+                character = input.charAt(0);
+                character = Character.toUpperCase(character);
+                return character;
             }
             System.out.println("Invalid input. Please try again.");
         }

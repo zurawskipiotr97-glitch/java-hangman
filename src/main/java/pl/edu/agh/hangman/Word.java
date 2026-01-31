@@ -13,7 +13,7 @@ public class Word {
     private Random random = new Random();
 
     public Word(String nazwaPliku) throws IOException {
-        slowa = Files.readAllLines(Path.of(nazwaPliku));
+        this.slowa = Files.readAllLines(Path.of(nazwaPliku));
 
         for (int i = 0; i < slowa.size(); i++) {
             slowa.set(i, slowa.get(i)
