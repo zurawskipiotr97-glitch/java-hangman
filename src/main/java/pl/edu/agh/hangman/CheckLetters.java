@@ -10,7 +10,7 @@ public class CheckLetters {
         this.showingWord = new char[word.length()];
     }
 
-    public void ContainsLetter(String word, char letter) {
+    public void containsLetter(char letter) {
         if (Character.isAlphabetic(letter) && word.contains(String.valueOf(letter))) {
             try {
                 String upperCaseWord = word.toUpperCase();
