@@ -1,3 +1,5 @@
+package pl.edu.agh.hangman;
+
 import java.util.Scanner;
 
 
