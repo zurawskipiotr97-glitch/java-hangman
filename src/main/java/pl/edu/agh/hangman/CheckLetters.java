@@ -2,19 +2,18 @@ package pl.edu.agh.hangman;
 
 public class CheckLetters {
     private final String word;
-    private int[] showingWord;
+    private char[] showingWord;
     private int gameStatus = 1;
 
     public CheckLetters(String word) {
         this.word = word;
-        this.showingWord = new int[word.length()];
+        this.showingWord = new char[word.length()];
     }
 
     private void ContainsLetter(String word, char letter) {
-        
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) == letter) {
-                showingWord[i] = letter - 'a';
+                showingWord[i] = letter;
             }
         }
 
@@ -22,7 +21,7 @@ public class CheckLetters {
 
     }
 
-    public int[] getShowingWord() {
+    public char[] getShowingWord() {
         return showingWord;
     }
 
