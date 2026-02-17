@@ -37,7 +37,9 @@ public class LosujSlowoZPliku implements LosujSlowo {
 
             slowa.removeIf(String::isBlank);
 
-        slowa.removeIf(s -> s.length() != dlugoscSlowa);
+        if (dlugoscSlowa != 0) {
+            slowa.removeIf(s -> s.length() != dlugoscSlowa);
+        }
 
         if (slowa.isEmpty()) {
             throw new IllegalStateException("Brak słów w pliku!");

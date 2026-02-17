@@ -8,12 +8,19 @@ import java.net.http.HttpResponse;
 
 public class LosujSlowoZWordnik implements LosujSlowo {
     private String path;
-    private int dlugoscSlowa;
+    private int maxdlugoscSlowa;
+    private int mindlugoscSlowa;
     private static final String API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
 
     public LosujSlowoZWordnik(String path, int dlugoscSlowa) {
         this.path = path;
-        this.dlugoscSlowa = dlugoscSlowa;
+        if (dlugoscSlowa == 0) {
+            this.mindlugoscSlowa = 1;
+            this.maxdlugoscSlowa = 15;
+        } else {
+            this.mindlugoscSlowa = dlugoscSlowa;
+            this.maxdlugoscSlowa = dlugoscSlowa;
+        }
     }
 
     @Override
@@ -22,8 +29,8 @@ public class LosujSlowoZWordnik implements LosujSlowo {
             String url = "https://api.wordnik.com/v4/words.json/randomWords"
                     + "?hasDictionaryDef=true"
                     + "&minCorpusCount=0"
-                    + "&minLength=" + dlugoscSlowa
-                    + "&maxLength=" + dlugoscSlowa
+                    + "&minLength=" + mindlugoscSlowa
+                    + "&maxLength=" + maxdlugoscSlowa
                     + "&limit=1"
                     + "&api_key=" + API_KEY;
 

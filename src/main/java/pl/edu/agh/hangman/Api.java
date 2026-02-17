@@ -8,16 +8,15 @@ public class Api {
         Config k = Config.getInstance();
         CheckLetters gra = new CheckLetters();
         PrintBoard print = new PrintBoard(gra);
-        String[] table = k.getTable();
-
-
+        gra.prepare();
 
 //  Main logic
-        while (gra.getGameStatus() != table.length + 1) {
-            gra.containsLetter(UserInput.letterInput());
+        while (gra.getGameStatus() != k.getTable().length + 1) {
             print.printBoard(gra);
+            gra.containsLetter(UserInput.letterInput());
         }
 
+        print.printBoard(gra);
 
 
     }
