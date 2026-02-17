@@ -1,4 +1,10 @@
-package pl.edu.agh.hangman;
+package pl.edu.agh.hangman.Config;
+
+import pl.edu.agh.hangman.*;
+import pl.edu.agh.hangman.Api.HangmanPicsNew;
+import pl.edu.agh.hangman.RandomWord.LosujSlowo;
+import pl.edu.agh.hangman.RandomWord.LosujSlowoZPliku;
+import pl.edu.agh.hangman.RandomWord.LosujSlowoZWordnik;
 
 public class Config {
     private static Config instance;

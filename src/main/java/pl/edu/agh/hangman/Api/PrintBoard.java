@@ -1,4 +1,6 @@
-package pl.edu.agh.hangman;
+package pl.edu.agh.hangman.Api;
+
+import pl.edu.agh.hangman.Config.Config;
 
 import java.util.Arrays;
 
@@ -24,7 +26,6 @@ public class PrintBoard {
             } else {
                 printGame(gra);
                 System.out.println("Wrong Letters: " + gra.getWrongLetters());
-                System.out.println(gra.getWord());
             }
 
         } else {

@@ -1,4 +1,4 @@
-package pl.edu.agh.hangman;
+package pl.edu.agh.hangman.Api;
 
 import java.io.IOException;
 import java.util.Scanner;

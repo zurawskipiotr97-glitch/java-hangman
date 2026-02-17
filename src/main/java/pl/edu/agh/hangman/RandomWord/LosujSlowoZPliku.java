@@ -1,4 +1,4 @@
-package pl.edu.agh.hangman;
+package pl.edu.agh.hangman.RandomWord;
 
 import java.io.IOException;
 import java.nio.file.Files;

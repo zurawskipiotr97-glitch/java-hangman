@@ -1,5 +1,7 @@
 package pl.edu.agh.hangman;
 
+import pl.edu.agh.hangman.Api.Api;
+
 import java.io.IOException;
 
 public class Hangman {

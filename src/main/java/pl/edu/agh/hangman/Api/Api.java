@@ -1,4 +1,7 @@
-package pl.edu.agh.hangman;
+package pl.edu.agh.hangman.Api;
+
+import pl.edu.agh.hangman.Config.Config;
+import pl.edu.agh.hangman.Config.ConfigInputSetter;
 
 import java.io.IOException;
 
