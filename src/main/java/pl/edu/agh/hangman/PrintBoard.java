@@ -5,12 +5,10 @@ import java.util.Arrays;
 public class PrintBoard {
     Config k = Config.getInstance();
     String[] tablica;
-    private int stanGry;
     private char[] showWord;
     private boolean endFlag = false;
 
     public PrintBoard(CheckLetters gra) {
-        this.stanGry = gra.getGameStatus();
         this.tablica = k.getTable();;
         this.showWord = new char[gra.getShowingWord().length];
     }
@@ -19,27 +17,19 @@ public class PrintBoard {
 
 
         if (tablica.length != gra.getGameStatus() + 1) {
-            System.out.println();
-            System.out.println(tablica[gra.getGameStatus()]);
-            printWithSpaces(changeWord(gra.getShowingWord()));
+            printGame(gra);
 // log
             System.out.println(gra.getWord());
 
             if (Arrays.equals(showWord, gra.getCharWord())) {
-
-                System.out.println();
-                System.out.println(tablica[gra.getGameStatus()]);
-                printWithSpaces(changeWord(gra.getShowingWord()));
+                printGame(gra);
                 System.out.println("WINNER");
                 endFlag = true;
                 return;
             }
             return;
         } else {
-
-            System.out.println();
-            System.out.println(tablica[gra.getGameStatus()]);
-            printWithSpaces(changeWord(gra.getShowingWord()));
+            printGame(gra);
             System.out.println("LOOSER");
             endFlag = true;
             return;
@@ -58,11 +48,33 @@ public class PrintBoard {
         return showWord;
     }
 
-    private static void printWithSpaces(char[] wordtoprint) {
-        for (int i = 0 ; i < wordtoprint.length; i++) {
-            System.out.print(wordtoprint[i] + " ");
-        }
+    private void printGame(CheckLetters gra) {
         System.out.println();
+        System.out.println(modifyHangmanLine(gra.getGameStatus(),
+                3, "       " + toStringWithSpaces(changeWord(gra.getShowingWord()))));
+    }
+
+    private static String toStringWithSpaces(char[] wordtoprint) {
+        StringBuilder noweSlowo = new StringBuilder();
+        for (char c : wordtoprint) {
+            noweSlowo.append(c).append(" ");
+        }
+        return noweSlowo.toString();
+    }
+
+    public String modifyHangmanLine(int picIndex, int lineNumber1Based, String toAppend) {
+        String pic = tablica[picIndex];
+        String[] lines = pic.split("\n", -1);
+
+        int lineIndex = lineNumber1Based - 1; // 3 -> 2
+
+        if (lineIndex < 0 || lineIndex >= lines.length) {
+            return pic; // albo rzuć wyjątek
+        }
+
+        lines[lineIndex] = lines[lineIndex] + toAppend;
+
+        return String.join("\n", lines);
     }
 
     public boolean getEndFlag() {
