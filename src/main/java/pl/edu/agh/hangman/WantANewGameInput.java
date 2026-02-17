@@ -15,12 +15,9 @@ public class WantANewGameInput {
 
             String decision = scanner.nextLine().toUpperCase();
             switch (decision) {
-                case "EXIT", "2" -> {
-                    System.exit(0);
-                }
-                default -> {
-                    Api.run();
-                }
+                case "EXIT", "2" -> System.exit(0);
+
+                default -> Api.run();
             }
         }
     }

@@ -50,7 +50,7 @@ public class Config {
     public String[] getTable() {
         switch (whichTableAnimation) {
             case 1 -> {
-                return Hangman.HANGMANPICS;
+                return HangmanPicsNew.HANGMANPICSNEW;
             }
             default -> {
                 return Hangman.HANGMANPICS;
@@ -59,14 +59,10 @@ public class Config {
     }
 
     public String getTableName() {
-        switch (whichTableAnimation) {
-            case 1 -> {
-                return "HANGMANPICS-New";
-            }
-            default -> {
-                return "HANGMANPICS-Default";
-            }
+        if (whichTableAnimation == 1) {
+            return "HANGMANPICS-New";
         }
+        return "HANGMANPICS-Default";
     }
 
     public void setMinDlugoscSlowa(int nowaMinDlugosc) {

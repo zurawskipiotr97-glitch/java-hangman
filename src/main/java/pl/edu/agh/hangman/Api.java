@@ -8,10 +8,10 @@ public class Api {
         Config k = Config.getInstance();
         setConfig(k);
         newGame(k);
-        wantANewGame(k);
+        wantANewGame();
     }
 
-    public static void setConfig(Config k) throws IOException, InterruptedException {
+    public static void setConfig(Config k) {
         ConfigInputSetter setter = new ConfigInputSetter(k);
         setter.menu();
     }
@@ -32,7 +32,7 @@ public class Api {
         } while ((gra.getGameStatus() != k.getTable().length));
     }
 
-    private static void wantANewGame(Config k) throws IOException, InterruptedException {
+    private static void wantANewGame() throws IOException, InterruptedException {
         WantANewGameInput.decide();
     }
 }
