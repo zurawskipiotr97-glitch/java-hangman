@@ -10,11 +10,13 @@ import java.util.Random;
 
 public class LosujSlowoZPliku implements LosujSlowo {
     private String path;
-    private int dlugoscSlowa;
+    private int minDlugoscSlowa;
+    private int maxDlugoscSlowa;
 
-    public LosujSlowoZPliku(String path, int dlugoscSlowa) {
+    public LosujSlowoZPliku(String path, int minDlugoscSlowa, int maxDlugoscSlowa) {
         this.path = path;
-        this.dlugoscSlowa = dlugoscSlowa;
+        this.minDlugoscSlowa = minDlugoscSlowa;
+        this.maxDlugoscSlowa = maxDlugoscSlowa;
     }
 
     @Override
@@ -37,8 +39,8 @@ public class LosujSlowoZPliku implements LosujSlowo {
 
             slowa.removeIf(String::isBlank);
 
-        if (dlugoscSlowa != 0) {
-            slowa.removeIf(s -> s.length() != dlugoscSlowa);
+        if (minDlugoscSlowa > 0 && maxDlugoscSlowa > 0) {
+            slowa.removeIf(s -> s.length() < minDlugoscSlowa || s.length() > maxDlugoscSlowa);
         }
 
         if (slowa.isEmpty()) {

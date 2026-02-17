@@ -7,20 +7,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class LosujSlowoZWordnik implements LosujSlowo {
-    private String path;
-    private int maxdlugoscSlowa;
-    private int mindlugoscSlowa;
+    private final int maxdlugoscSlowa;
+    private final int mindlugoscSlowa;
     private static final String API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
 
-    public LosujSlowoZWordnik(String path, int dlugoscSlowa) {
-        this.path = path;
-        if (dlugoscSlowa == 0) {
-            this.mindlugoscSlowa = 1;
-            this.maxdlugoscSlowa = 15;
-        } else {
-            this.mindlugoscSlowa = dlugoscSlowa;
-            this.maxdlugoscSlowa = dlugoscSlowa;
-        }
+    public LosujSlowoZWordnik(int minDlugoscSlowa, int maxDlugoscSlowa) {
+        this.mindlugoscSlowa = minDlugoscSlowa;
+        this.maxdlugoscSlowa = maxDlugoscSlowa;
     }
 
     @Override
@@ -34,21 +27,20 @@ public class LosujSlowoZWordnik implements LosujSlowo {
                     + "&limit=1"
                     + "&api_key=" + API_KEY;
 
-            HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response;
+        try (HttpClient client = HttpClient.newHttpClient()) {
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .GET()
                     .build();
 
-            HttpResponse<String> response =
-                    client.send(request, HttpResponse.BodyHandlers.ofString());
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
 
-            String body = response.body();
+        String body = response.body();
 
-            String word = body.split("\"word\":\"")[1].split("\"")[0];
-
-            return word;
+        return body.split("\"word\":\"")[1].split("\"")[0];
         }
     }
 

@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class PrintBoard {
     Config k = Config.getInstance();
     String[] tablica;
-    private char[] showWord;
+    private final char[] showWord;
     private boolean endFlag = false;
 
     public PrintBoard(CheckLetters gra) {
-        this.tablica = k.getTable();;
+        this.tablica = k.getTable();
         this.showWord = new char[gra.getShowingWord().length];
     }
 
@@ -25,14 +25,12 @@ public class PrintBoard {
                 printGame(gra);
                 System.out.println("WINNER");
                 endFlag = true;
-                return;
             }
-            return;
+
         } else {
             printGame(gra);
             System.out.println("LOOSER");
             endFlag = true;
-            return;
         }
     }
 

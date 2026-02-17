@@ -20,6 +20,5 @@ public class UserInput {
             }
             System.out.println("Invalid input. Please try again.");
         }
-
     }
 }

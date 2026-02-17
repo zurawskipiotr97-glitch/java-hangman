@@ -5,7 +5,16 @@ import java.io.IOException;
 public class Api {
 
     public static void run() throws IOException, InterruptedException {
-    newGame();
+        setConfig();
+        newGame();
+//        wantANewGame();
+
+    }
+
+    public static void setConfig() {
+        Config k = Config.getInstance();
+
+
     }
 
     //  Main logic
