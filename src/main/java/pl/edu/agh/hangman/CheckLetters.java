@@ -63,4 +63,8 @@ public class CheckLetters {
     public char[] getCharWord() {
         return charWord;
     }
+
+    public String getWord() {
+        return word;
+    }
 }

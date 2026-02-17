@@ -63,7 +63,7 @@ public class ConfigInputSetter {
                                     k.setWhichRandomWordCase(2);
                                     menu();
                                 }
-                                case "EXIT", "4" -> {
+                                case "EXIT" -> {
                                     System.exit(0);
                                 }
                                 default -> {
@@ -73,9 +73,35 @@ public class ConfigInputSetter {
 
                         }
                         case "A", "3" -> {
+                            System.out.print("""
+                                    
+                                    Animation
+                                    1. Default - insert 'D'
+                                    2. New - insert 'N'
+                                    3. Back to Menu - insert anything else
+                                    Your choice:\s""");
+
+                            String animationSourceChoice = scanner.next().toUpperCase();
+                            switch (animationSourceChoice) {
+                                case "D", "1" -> {
+                                    k.setWhichTableAnimation(0);
+                                    menu();
+                                }
+                                case "N", "2" -> {
+                                    k.setWhichTableAnimation(1);
+                                    menu();
+                                }
+                                case "EXIT" -> {
+                                    System.exit(0);
+                                }
+                                default -> {
+                                    menu();
+                                }
+                            }
+
 
                         }
-                        case "EXIT", "4" -> {
+                        case "EXIT" -> {
                             System.exit(0);
                         }
                         default -> {
@@ -146,9 +172,4 @@ public class ConfigInputSetter {
         String newPath = scanner.nextLine();
         k.setOwnPath(newPath);
     }
-
-    public void setAnimation() {
-
-    }
-
 }

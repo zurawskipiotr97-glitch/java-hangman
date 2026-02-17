@@ -16,12 +16,14 @@ public class PrintBoard {
 
     public void printBoard(CheckLetters gra) {
         if (tablica.length != gra.getGameStatus() + 1) {
-            printGame(gra);
 
-            if (Arrays.equals(showWord, gra.getCharWord())) {
+            if (Arrays.equals(gra.getShowingWord(), gra.getCharWord())) {
                 printGame(gra);
                 System.out.println("\n  WINNER");
                 endFlag = true;
+            } else {
+                printGame(gra);
+                System.out.println(gra.getWord());
             }
 
         } else {
@@ -44,13 +46,11 @@ public class PrintBoard {
     }
 
     private void printGame(CheckLetters gra) {
-        System.out.println();
         System.out.println(modifyHangmanLine(gra.getGameStatus(),
                 3, "       " + toStringWithSpaces(changeWord(gra.getShowingWord()))));
     }
 
     private void printEndGame(CheckLetters gra) {
-        System.out.println();
         System.out.println(modifyHangmanLine(gra.getGameStatus(),
                 3, "       " + toStringWithSpaces(changeWord(gra.getCharWord()))));
     }

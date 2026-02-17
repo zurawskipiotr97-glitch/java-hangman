@@ -60,6 +60,6 @@ public class LosujSlowoZWordnik implements LosujSlowo {
                     "w odpowiedzi: " + body);
         }
 
-        return m.group(1);
+        return m.group(1).toUpperCase();
     }
 }

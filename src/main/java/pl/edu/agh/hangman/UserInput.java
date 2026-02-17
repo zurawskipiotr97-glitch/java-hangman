@@ -1,11 +1,12 @@
 package pl.edu.agh.hangman;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class UserInput {
 
-    public static char letterInput() {
+    public static char letterInput() throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
         String input;
         char character;
@@ -13,8 +14,13 @@ public class UserInput {
         while (true) {
             System.out.print("guess> ");
             input = scanner.nextLine().trim().toUpperCase();
+
             if (input.equalsIgnoreCase("Exit")) {
                 System.exit(0);
+            }
+
+            if (input.equalsIgnoreCase("Menu")) {
+                Api.run();
             }
 
             if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
