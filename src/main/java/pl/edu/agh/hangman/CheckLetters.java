@@ -14,16 +14,9 @@ public class CheckLetters {
 
     public CheckLetters() throws IOException, InterruptedException {
         this.word = losujPathCase.losujSlowo();
-        this.charWord = charWord(word);
         this.showingWord = new char[word.length()];
+        this.charWord = word.toUpperCase().toCharArray();
         this.gameStatus = 0;
-    }
-
-    public char[] charWord(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            showingWord[i] = word.charAt(i);
-        }
-        return charWord;
     }
 
     public void prepare() {

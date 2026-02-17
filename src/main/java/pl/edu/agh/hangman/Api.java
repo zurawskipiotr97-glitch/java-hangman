@@ -5,20 +5,23 @@ import java.io.IOException;
 public class Api {
 
     public static void run() throws IOException, InterruptedException {
-        Config k = Config.getInstance();
-        CheckLetters gra = new CheckLetters();
-        PrintBoard print = new PrintBoard(gra);
-        gra.prepare();
-
-//  Main logic
-        while (gra.getGameStatus() != k.getTable().length + 1) {
-            print.printBoard(gra);
-            gra.containsLetter(UserInput.letterInput());
-        }
-
-        print.printBoard(gra);
-
-
+    newGame();
     }
 
+    //  Main logic
+    private static void newGame() throws IOException, InterruptedException {
+        Config k = Config.getInstance();
+        CheckLetters gra = new CheckLetters();
+        gra.prepare();
+        PrintBoard print = new PrintBoard(gra);
+
+        do {
+            print.printBoard(gra);
+            if (!print.getEndFlag()) {
+                gra.containsLetter(UserInput.letterInput());
+            } else {
+                break;
+            }
+        } while ((gra.getGameStatus() != k.getTable().length));
+    }
 }

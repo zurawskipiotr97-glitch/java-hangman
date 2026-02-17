@@ -1,13 +1,13 @@
 package pl.edu.agh.hangman;
 
-import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class PrintBoard {
     Config k = Config.getInstance();
     String[] tablica;
-    int stanGry;
-    char[] showWord;
-    int wynik;
+    private int stanGry;
+    private char[] showWord;
+    private boolean endFlag = false;
 
     public PrintBoard(CheckLetters gra) {
         this.stanGry = gra.getGameStatus();
@@ -16,24 +16,31 @@ public class PrintBoard {
     }
 
     public void printBoard(CheckLetters gra) {
-        if (showWord == gra.getCharWord()) {
-            System.out.println(tablica[gra.getGameStatus()]);
-            System.out.println(gra.getWord());
-            System.out.println("WINNER");
-            return;
-        }
 
-        else if (tablica.length != gra.getGameStatus()) {
+
+        if (tablica.length != gra.getGameStatus() + 1) {
             System.out.println();
             System.out.println(tablica[gra.getGameStatus()]);
-            showWord = changeWord(gra.getShowingWord());
-            System.out.println(showWord);
+            System.out.println(changeWord(gra.getShowingWord()));
             System.out.println(gra.getWord());
-        } else {
-            System.out.println("LOOSER");
+            if (Arrays.equals(showWord, gra.getCharWord())) {
+                System.out.println();
+                System.out.println(tablica[gra.getGameStatus()]);
+                System.out.println((changeWord(gra.getShowingWord())));
+                System.out.println("WINNER");
+                endFlag = true;
+                return;
             }
+            return;
+        } else {
+            System.out.println(tablica[gra.getGameStatus()]);
+            System.out.println(changeWord(gra.getShowingWord()));
+            System.out.println("LOOSER");
+            endFlag = true;
+            return;
         }
     }
+
 
     public char [] changeWord(char[] showingWord) {
         for (int i = 0; i < showingWord.length; i++) {
@@ -44,5 +51,18 @@ public class PrintBoard {
             }
         }
         return showWord;
+    }
+
+    private char[] showWordSpaceAdder(char[] showWord) {
+        char [] newShowWord = new char[showWord.length * 2];
+        for (int i = 0; i < showWord.length; i += 2){
+            newShowWord[i] = showWord[i/2];
+            newShowWord[i+1] = ' ';
+        }
+        return newShowWord;
+    }
+
+    public boolean getEndFlag() {
+        return endFlag;
     }
 }
