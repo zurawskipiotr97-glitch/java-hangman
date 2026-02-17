@@ -11,14 +11,13 @@ public class Api {
         wantANewGame(k);
     }
 
-    public static void setConfig(Config k) {
+    public static void setConfig(Config k) throws IOException, InterruptedException {
         ConfigInputSetter setter = new ConfigInputSetter(k);
         setter.menu();
-
     }
 
     //  Main logic
-    private static void newGame(Config k) throws IOException, InterruptedException {
+    static void newGame(Config k) throws IOException, InterruptedException {
         CheckLetters gra = new CheckLetters(k);
         gra.prepare();
         PrintBoard print = new PrintBoard(gra, k);
@@ -33,11 +32,7 @@ public class Api {
         } while ((gra.getGameStatus() != k.getTable().length));
     }
 
-    private static void wantANewGame(Config k) {
-        System.out.print("""
-                1 New Game? - insert anything
-                3. Menu - insert 'menu'
-                2. Exit - insert 'exit'
-                Your choice:\s""");
+    private static void wantANewGame(Config k) throws IOException, InterruptedException {
+        WantANewGameInput.decide();
     }
 }

@@ -19,16 +19,17 @@ public class PrintBoard {
 
             if (Arrays.equals(gra.getShowingWord(), gra.getCharWord())) {
                 printGame(gra);
-                System.out.println("\n  WINNER");
+                System.out.println("\n  WINNER\n");
                 endFlag = true;
             } else {
                 printGame(gra);
+                System.out.println("Wrong Letters: " + gra.getWrongLetters());
                 System.out.println(gra.getWord());
             }
 
         } else {
             printEndGame(gra);
-            System.out.println("\n  LOOSER");
+            System.out.println("\n  LOOSER\n");
             endFlag = true;
         }
     }
@@ -46,11 +47,13 @@ public class PrintBoard {
     }
 
     private void printGame(CheckLetters gra) {
+        System.out.println();
         System.out.println(modifyHangmanLine(gra.getGameStatus(),
                 3, "       " + toStringWithSpaces(changeWord(gra.getShowingWord()))));
     }
 
     private void printEndGame(CheckLetters gra) {
+        System.out.println();
         System.out.println(modifyHangmanLine(gra.getGameStatus(),
                 3, "       " + toStringWithSpaces(changeWord(gra.getCharWord()))));
     }
