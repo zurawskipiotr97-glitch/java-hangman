@@ -26,6 +26,7 @@ public class PrintBoard {
             } else {
                 printGame(gra);
                 System.out.println("Wrong Letters: " + gra.getWrongLetters());
+                System.out.println("Remaining try: " + (tablica.length - gra.getGameStatus() - 1));
             }
 
         } else {
