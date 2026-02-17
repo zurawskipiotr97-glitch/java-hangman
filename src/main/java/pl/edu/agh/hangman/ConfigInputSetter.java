@@ -1,5 +1,6 @@
 package pl.edu.agh.hangman;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConfigInputSetter {
@@ -12,12 +13,14 @@ public class ConfigInputSetter {
 
     public void menu() {
         while (true) {
-            System.out.print("\nHANGMAN - (type number)\n" +
-                    "1. Settings - insert 'S'\n" +
-                    "2. Game - insert anything else\n" +
-                    "3. Exit Game - insert 'exit'\n" +
-                    "(In game type: 'menu' to go back here, or 'exit' exit the game)\n" +
-                    "Your choice: ");
+            System.out.print("""
+                    
+                    HANGMAN - (type number)
+                    1. Settings - insert 'S'
+                    2. Game - insert anything else
+                    3. Exit Game - insert 'exit'
+                    (In game type: 'menu' to go back here, or 'exit' exit the game)
+                    Your choice:\s""");
 
             String choice = scanner.nextLine().toUpperCase();
             switch (choice) {
@@ -36,23 +39,29 @@ public class ConfigInputSetter {
                             menu();
                         }
                         case "S", "2" -> {
-                            System.out.print("\nWord Source\n" +
-                                    "1. Default File - insert 'D'\n" +
-                                    "2. Own .txt File (chose path) - insert 'O'\n" +
-                                    "3. Wordnik - insert 'W'\n" +
-                                    "4. Back to Menu - insert anything else\n" +
-                                    "Your choice: ");
+                            System.out.print("""
+                                    
+                                    Word Source
+                                    1. Default File - insert 'D'
+                                    2. Own .txt File (chose path) - insert 'O'
+                                    3. Wordnik - insert 'W'
+                                    4. Back to Menu - insert anything else
+                                    Your choice:\s""");
 
                             String sourceChoice = scanner.next().toUpperCase();
                             switch (sourceChoice) {
                                 case "D", "1" -> {
-
+                                    k.setWhichRandomWordCase(0);
+                                    menu();
                                 }
                                 case "O", "2" -> {
+                                    newFilePathSource();
+                                    menu();
 
                                 }
                                 case "W", "3" -> {
-
+                                    k.setWhichRandomWordCase(2);
+                                    menu();
                                 }
                                 case "EXIT", "4" -> {
                                     System.exit(0);
@@ -131,8 +140,11 @@ public class ConfigInputSetter {
 
 
 
-    public void newFilePath() {
-
+    public void newFilePathSource() {
+            k.setWhichRandomWordCase(1);
+        System.out.print("\nAdd path to your file (.txt)");
+        String newPath = scanner.nextLine();
+        k.setOwnPath(newPath);
     }
 
     public void setAnimation() {

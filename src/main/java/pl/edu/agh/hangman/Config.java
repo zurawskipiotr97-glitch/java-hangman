@@ -12,11 +12,10 @@ public class Config {
         return instance;
     }
 
-    private String plikPath = "src/main/resources/slowa.txt";
     private String ownPath;
 
     private int whichCase = 0;
-    private int whichTableAnimation = 1;
+    private int whichTableAnimation = 0;
 
     private int mindlugoscSlowa = 1;
     private int maxdlugoscSlowa = 15;
@@ -30,6 +29,7 @@ public class Config {
                 return new LosujSlowoZWordnik(mindlugoscSlowa, maxdlugoscSlowa);
             }
             default -> {
+                String plikPath = "src/main/resources/slowa.txt";
                 return new LosujSlowoZPliku(plikPath, mindlugoscSlowa, maxdlugoscSlowa);
             }
         }
@@ -49,7 +49,7 @@ public class Config {
 
     public String[] getTable() {
         switch (whichTableAnimation) {
-            case 2 -> {
+            case 1 -> {
                 return Hangman.HANGMANPICS;
             }
             default -> {
@@ -60,7 +60,7 @@ public class Config {
 
     public String getTableName() {
         switch (whichTableAnimation) {
-            case 2 -> {
+            case 1 -> {
                 return "HANGMANPICS-New";
             }
             default -> {
@@ -84,10 +84,6 @@ public class Config {
 
     public void setWhichTableAnimation(int whichTableAnimation) {
         this.whichTableAnimation = whichTableAnimation;
-    }
-
-    public void setPlikPath(String path) {
-        this.plikPath = path;
     }
 
     public void setOwnPath(String path) {
