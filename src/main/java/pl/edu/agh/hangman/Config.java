@@ -59,10 +59,14 @@ public class Config {
     }
 
     public String getTableName() {
-        if (whichTableAnimation == 1) {
-            return "HANGMANPICS-New";
+        switch (whichTableAnimation) {
+            case 1 -> {
+                return "HANGMANPICS-New";
+            }
+            default -> {
+                return "HANGMANPICS-Default";
+            }
         }
-        return "HANGMANPICS-Default";
     }
 
     public void setMinDlugoscSlowa(int nowaMinDlugosc) {
