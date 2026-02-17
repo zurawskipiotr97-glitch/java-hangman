@@ -19,8 +19,7 @@ public class ConfigInputSetter {
                     "(In game type: 'menu' to go back here, or 'exit' exit the game)\n" +
                     "Your choice: ");
 
-            String choice = "";
-            choice = scanner.nextLine().toUpperCase();
+            String choice = scanner.nextLine().toUpperCase();
             switch (choice) {
                 case "S", "1" -> {
                     System.out.print("\nSettings\n" +
@@ -30,8 +29,7 @@ public class ConfigInputSetter {
                             "4. Back to Menu - insert anything else\n" +
                             "Your choice: ");
 
-                    String nextChoice = "";
-                    nextChoice = scanner.next().toUpperCase();
+                    String nextChoice = scanner.next().toUpperCase();
                     switch (nextChoice) {
                         case "L", "1" -> {
                             newDlugoscSlowa();
@@ -45,8 +43,7 @@ public class ConfigInputSetter {
                                     "4. Back to Menu - insert anything else\n" +
                                     "Your choice: ");
 
-                            String sourceChoice = "";
-                            sourceChoice = scanner.next().toUpperCase();
+                            String sourceChoice = scanner.next().toUpperCase();
                             switch (sourceChoice) {
                                 case "D", "1" -> {
 
