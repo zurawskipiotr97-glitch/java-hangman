@@ -24,7 +24,7 @@ public class PrintBoard {
             }
 
         } else {
-            printGame(gra);
+            printEndGame(gra);
             System.out.println("LOOSER");
             endFlag = true;
         }
@@ -46,6 +46,12 @@ public class PrintBoard {
         System.out.println();
         System.out.println(modifyHangmanLine(gra.getGameStatus(),
                 3, "       " + toStringWithSpaces(changeWord(gra.getShowingWord()))));
+    }
+
+    private void printEndGame(CheckLetters gra) {
+        System.out.println();
+        System.out.println(modifyHangmanLine(gra.getGameStatus(),
+                3, "       " + toStringWithSpaces(changeWord(gra.getCharWord()))));
     }
 
     private static String toStringWithSpaces(char[] wordtoprint) {
