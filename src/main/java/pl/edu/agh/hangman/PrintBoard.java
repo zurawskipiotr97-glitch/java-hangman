@@ -21,20 +21,25 @@ public class PrintBoard {
         if (tablica.length != gra.getGameStatus() + 1) {
             System.out.println();
             System.out.println(tablica[gra.getGameStatus()]);
-            System.out.println(changeWord(gra.getShowingWord()));
+            printWithSpaces(changeWord(gra.getShowingWord()));
+// log
             System.out.println(gra.getWord());
+
             if (Arrays.equals(showWord, gra.getCharWord())) {
+
                 System.out.println();
                 System.out.println(tablica[gra.getGameStatus()]);
-                System.out.println((changeWord(gra.getShowingWord())));
+                printWithSpaces(changeWord(gra.getShowingWord()));
                 System.out.println("WINNER");
                 endFlag = true;
                 return;
             }
             return;
         } else {
+
+            System.out.println();
             System.out.println(tablica[gra.getGameStatus()]);
-            System.out.println(changeWord(gra.getShowingWord()));
+            printWithSpaces(changeWord(gra.getShowingWord()));
             System.out.println("LOOSER");
             endFlag = true;
             return;
@@ -53,13 +58,11 @@ public class PrintBoard {
         return showWord;
     }
 
-    private char[] showWordSpaceAdder(char[] showWord) {
-        char [] newShowWord = new char[showWord.length * 2];
-        for (int i = 0; i < showWord.length; i += 2){
-            newShowWord[i] = showWord[i/2];
-            newShowWord[i+1] = ' ';
+    private static void printWithSpaces(char[] wordtoprint) {
+        for (int i = 0 ; i < wordtoprint.length; i++) {
+            System.out.print(wordtoprint[i] + " ");
         }
-        return newShowWord;
+        System.out.println();
     }
 
     public boolean getEndFlag() {
