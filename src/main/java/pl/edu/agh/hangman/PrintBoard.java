@@ -3,12 +3,13 @@ package pl.edu.agh.hangman;
 import java.util.Arrays;
 
 public class PrintBoard {
-    Config k = Config.getInstance();
+    Config k;
     String[] tablica;
     private final char[] showWord;
     private boolean endFlag = false;
 
-    public PrintBoard(CheckLetters gra) {
+    public PrintBoard(CheckLetters gra, Config k) {
+        this.k=k;
         this.tablica = k.getTable();
         this.showWord = new char[gra.getShowingWord().length];
     }
@@ -19,13 +20,13 @@ public class PrintBoard {
 
             if (Arrays.equals(showWord, gra.getCharWord())) {
                 printGame(gra);
-                System.out.println("WINNER");
+                System.out.println("\n  WINNER");
                 endFlag = true;
             }
 
         } else {
             printEndGame(gra);
-            System.out.println("LOOSER");
+            System.out.println("\n  LOOSER");
             endFlag = true;
         }
     }

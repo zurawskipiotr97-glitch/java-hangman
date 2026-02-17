@@ -55,7 +55,9 @@ public class LosujSlowoZWordnik implements LosujSlowo {
 
         Matcher m = WORD_PATTERN.matcher(body);
         if (!m.find()) {
-            throw new IOException("Nie udało się znaleźć pola \"word\" w odpowiedzi: " + body);
+            throw new IOException("Nie udało się znaleźć pola \"word\" " +
+                    "o zadanych parametrzach długości (" + minDlugoscSlowa + ", " + maxDlugoscSlowa + ") " +
+                    "w odpowiedzi: " + body);
         }
 
         return m.group(1);

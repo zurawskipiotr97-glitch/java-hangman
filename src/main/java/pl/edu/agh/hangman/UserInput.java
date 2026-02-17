@@ -13,6 +13,9 @@ public class UserInput {
         while (true) {
             System.out.print("guess> ");
             input = scanner.nextLine().trim().toUpperCase();
+            if (input.equalsIgnoreCase("Exit")) {
+                System.exit(0);
+            }
 
             if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
                 character = input.charAt(0);

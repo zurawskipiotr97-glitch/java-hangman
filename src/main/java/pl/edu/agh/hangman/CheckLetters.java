@@ -3,15 +3,17 @@ package pl.edu.agh.hangman;
 import java.io.IOException;
 
 public class CheckLetters {
-    Config k = Config.getInstance();
-    LosujSlowo losujPathCase = k.getCase();
+    Config k;
+    LosujSlowo losujPathCase;
 
     private final String word;
     private final char[] showingWord;
     private final char[] charWord;
     private int gameStatus;
 
-    public CheckLetters() throws IOException, InterruptedException {
+    public CheckLetters(Config k) throws IOException, InterruptedException {
+        this.k = k;
+        this.losujPathCase = k.getCase();
         this.word = losujPathCase.losujSlowo();
         this.showingWord = new char[word.length()];
         this.charWord = word.toUpperCase().toCharArray();

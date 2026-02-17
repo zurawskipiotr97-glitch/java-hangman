@@ -4,25 +4,25 @@ import java.io.IOException;
 
 public class Api {
 
-    public static void run() throws IOException, InterruptedException {
-        setConfig();
-        newGame();
+    public void run() throws IOException, InterruptedException {
+        Config k = Config.getInstance();
+        setConfig(k);
+        newGame(k);
 //        wantANewGame();
-
     }
 
-    public static void setConfig() {
-//        Config k = Config.getInstance();
-
+    public void setConfig(Config k) {
+        ConfigInputSetter setter = new ConfigInputSetter(k);
+        setter.menu();
 
     }
 
     //  Main logic
-    private static void newGame() throws IOException, InterruptedException {
-        Config k = Config.getInstance();
-        CheckLetters gra = new CheckLetters();
+    private void newGame(Config k) throws IOException, InterruptedException {
+
+        CheckLetters gra = new CheckLetters(k);
         gra.prepare();
-        PrintBoard print = new PrintBoard(gra);
+        PrintBoard print = new PrintBoard(gra, k);
 
         do {
             print.printBoard(gra);

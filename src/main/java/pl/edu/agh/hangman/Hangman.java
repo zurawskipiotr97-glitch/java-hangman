@@ -57,6 +57,7 @@ public class Hangman {
     };
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Api.run();
+        Api api = new Api();
+        api.run();
     }
 }
