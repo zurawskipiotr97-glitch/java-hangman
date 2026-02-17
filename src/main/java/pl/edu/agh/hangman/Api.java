@@ -12,7 +12,7 @@ public class Api {
     }
 
     public static void setConfig() {
-        Config k = Config.getInstance();
+//        Config k = Config.getInstance();
 
 
     }

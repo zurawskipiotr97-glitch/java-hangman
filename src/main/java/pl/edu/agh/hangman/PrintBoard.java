@@ -14,12 +14,8 @@ public class PrintBoard {
     }
 
     public void printBoard(CheckLetters gra) {
-
-
         if (tablica.length != gra.getGameStatus() + 1) {
             printGame(gra);
-// log
-            System.out.println(gra.getWord());
 
             if (Arrays.equals(showWord, gra.getCharWord())) {
                 printGame(gra);

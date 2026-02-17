@@ -5,43 +5,59 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LosujSlowoZWordnik implements LosujSlowo {
-    private final int maxdlugoscSlowa;
-    private final int mindlugoscSlowa;
+    private final int minDlugoscSlowa;
+    private final int maxDlugoscSlowa;
     private static final String API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
 
+    private static final Pattern WORD_PATTERN = Pattern.compile("\"word\"\\s*:\\s*\"([^\"]+)\"");
+
+    private final HttpClient client = HttpClient.newHttpClient();
+
     public LosujSlowoZWordnik(int minDlugoscSlowa, int maxDlugoscSlowa) {
-        this.mindlugoscSlowa = minDlugoscSlowa;
-        this.maxdlugoscSlowa = maxDlugoscSlowa;
+        if (minDlugoscSlowa <= 0 || maxDlugoscSlowa <= 0) {
+            throw new IllegalArgumentException("Długości muszą być > 0");
+        }
+        if (minDlugoscSlowa > maxDlugoscSlowa) {
+            throw new IllegalArgumentException("minDlugoscSlowa nie może być większe niż maxDlugoscSlowa");
+        }
+        this.minDlugoscSlowa = minDlugoscSlowa;
+        this.maxDlugoscSlowa = maxDlugoscSlowa;
     }
 
     @Override
     public String losujSlowo() throws IOException, InterruptedException {
 
-            String url = "https://api.wordnik.com/v4/words.json/randomWords"
-                    + "?hasDictionaryDef=true"
-                    + "&minCorpusCount=0"
-                    + "&minLength=" + mindlugoscSlowa
-                    + "&maxLength=" + maxdlugoscSlowa
-                    + "&limit=1"
-                    + "&api_key=" + API_KEY;
+        String url = "https://api.wordnik.com/v4/words.json/randomWords"
+                + "?hasDictionaryDef=true"
+                + "&minCorpusCount=0"
+                + "&minLength=" + minDlugoscSlowa
+                + "&maxLength=" + maxDlugoscSlowa
+                + "&limit=1"
+                + "&api_key=" + API_KEY;
 
-        HttpResponse<String> response;
-        try (HttpClient client = HttpClient.newHttpClient()) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .header("Accept", "application/json")
+                .build();
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .GET()
-                    .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
+            throw new IOException("Wordnik HTTP " + response.statusCode() + ": " + response.body());
         }
 
         String body = response.body();
 
-        return body.split("\"word\":\"")[1].split("\"")[0];
+        Matcher m = WORD_PATTERN.matcher(body);
+        if (!m.find()) {
+            throw new IOException("Nie udało się znaleźć pola \"word\" w odpowiedzi: " + body);
         }
+
+        return m.group(1);
     }
-
-
+}

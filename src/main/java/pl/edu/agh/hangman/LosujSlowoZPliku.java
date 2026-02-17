@@ -3,15 +3,14 @@ package pl.edu.agh.hangman;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class LosujSlowoZPliku implements LosujSlowo {
-    private String path;
-    private int minDlugoscSlowa;
-    private int maxDlugoscSlowa;
+    private final String path;
+    private final int minDlugoscSlowa;
+    private final int maxDlugoscSlowa;
 
     public LosujSlowoZPliku(String path, int minDlugoscSlowa, int maxDlugoscSlowa) {
         this.path = path;
@@ -24,18 +23,14 @@ public class LosujSlowoZPliku implements LosujSlowo {
         List<String> slowa;
         Random random = new Random();
 
-            slowa = Files.readAllLines(Path.of(path));
+        slowa = Files.readAllLines(Path.of(path));
 
-            for (int i = 0; i < slowa.size(); i++) {
-                slowa.set(i, slowa.get(i)
-                        .replace('\u00A0', ' ')
-                        .trim());
-            }
+        slowa.replaceAll(s -> s
+                .replace('\u00A0', ' ')
+                .trim());
 
-            for (int i = 0; i < slowa.size(); i++) {
-                slowa.set(i, slowa.get(i)
-                        .toUpperCase(Locale.forLanguageTag("pl")));
-            }
+        slowa.replaceAll(s -> s
+                .toUpperCase(Locale.forLanguageTag("pl")));
 
             slowa.removeIf(String::isBlank);
 

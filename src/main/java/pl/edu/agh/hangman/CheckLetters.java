@@ -7,10 +7,9 @@ public class CheckLetters {
     LosujSlowo losujPathCase = k.getCase();
 
     private final String word;
-    private char[] showingWord;
-    private char[] charWord;
+    private final char[] showingWord;
+    private final char[] charWord;
     private int gameStatus;
-    private boolean flag = false;
 
     public CheckLetters() throws IOException, InterruptedException {
         this.word = losujPathCase.losujSlowo();
@@ -57,10 +56,6 @@ public class CheckLetters {
 
     public int getGameStatus() {
         return gameStatus;
-    }
-
-    public String getWord(){
-        return word;
     }
 
     public char[] getCharWord() {
